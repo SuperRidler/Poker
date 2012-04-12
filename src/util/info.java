@@ -3,6 +3,10 @@
 
 package util;
 
-public class info {
+public class Info {
 	
+	//Info you want to store.
+	int playerCardOne, playerCardTwo, currentChips, dealerPos;
+	int[] cardsOnTable, opponentMove, opponentPostion;
+
 }

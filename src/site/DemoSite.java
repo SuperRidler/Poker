@@ -5,7 +5,7 @@ package site;
 import java.awt.AWTException;
 import java.awt.Robot;
 
-import util.info;
+import util.Info;
 
 public class DemoSite extends Site {
 
@@ -45,7 +45,7 @@ public class DemoSite extends Site {
 	}
 
 	@Override
-	public info getInfo() {
+	public Info getInfo() {
 		//Get all the info a strategy needs and return it as an info object.
 		return null;
 	}
