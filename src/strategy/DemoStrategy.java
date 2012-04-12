@@ -8,7 +8,7 @@ public class DemoStrategy extends Strategy {
 	
 	@Override
 	public void update(Info info) {
-		//Example
+		//Example on info extraction from object.
 		cardsOnTable = info.getCardsOnTable();
 	}
 
