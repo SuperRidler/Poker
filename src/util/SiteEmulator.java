@@ -36,6 +36,9 @@ public class SiteEmulator {
 	}*/
 	
 	public SiteEmulator(){
+		
+		assert (intToCard(cardToInt("CA")).equals("CA")) : "";
+		
 		fv = new FiveEval();
 		iss = new InternalSite[MAX_PLAYERS];
 		r = new Random();
@@ -67,6 +70,7 @@ public class SiteEmulator {
 			int winner = determineWinner();
 			System.out.println(iss[winner]);
 			checkForBankruptPlayers();
+			rotateDealerPosition();
 		}
 	}
 	
@@ -170,7 +174,17 @@ public class SiteEmulator {
 				playerHandScore[i] = 0;
 			}
 		}
+		playerChips[winner] += currentPot;
+		currentPot = 0;
 		return winner;
+	}
+	
+	private void rotateDealerPosition(){
+		if(dealerPosition==numberOfPlayers){
+			dealerPosition = 0;
+		}else{
+			dealerPosition++;
+		}
 	}
 	
 	private boolean gameFinished(){
@@ -240,7 +254,7 @@ public class SiteEmulator {
 		return card;
 	}
 	
-	private String IntToCard(int num){
+	private String intToCard(int num){
 		int faceNum = 0;
 		while(num > 4){
 			num -= 4;
