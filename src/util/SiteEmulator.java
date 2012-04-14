@@ -5,6 +5,7 @@ import java.util.Random;
 
 import site.InternalSite;
 
+
 public class SiteEmulator {
 	
 	//Player state 0 = waiting on them to decide move.
