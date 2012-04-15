@@ -1,6 +1,5 @@
 package util;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -49,18 +48,18 @@ public class UniquePixel {
 	public String toString(){
 		String s = "";
 		s+= "ACE: "+pixelPosition[0][0]+","+pixelPosition[0][1]+" Color: "+imageArray[0][pixelPosition[0][0]][pixelPosition[0][1]]+"\n";
-		s+= "KING: "+pixelPosition[1][0]+","+pixelPosition[1][1]+" Color: "+imageArray[0][pixelPosition[1][0]][pixelPosition[1][1]]+"\n";
-		s+= "QUEEN: "+pixelPosition[2][0]+","+pixelPosition[2][1]+" Color: "+imageArray[0][pixelPosition[2][0]][pixelPosition[2][1]]+"\n";
-		s+= "JACK: "+pixelPosition[3][0]+","+pixelPosition[3][1]+" Color: "+imageArray[0][pixelPosition[3][0]][pixelPosition[3][1]]+"\n";
-		s+= "TEN: "+pixelPosition[4][0]+","+pixelPosition[4][1]+" Color: "+imageArray[0][pixelPosition[4][0]][pixelPosition[4][1]]+"\n";
-		s+= "NINE: "+pixelPosition[5][0]+","+pixelPosition[5][1]+" Color: "+imageArray[0][pixelPosition[5][0]][pixelPosition[5][1]]+"\n";
-		s+= "EIGHT: "+pixelPosition[6][0]+","+pixelPosition[6][1]+" Color: "+imageArray[0][pixelPosition[6][0]][pixelPosition[6][1]]+"\n";
-		s+= "SEVEN: "+pixelPosition[7][0]+","+pixelPosition[7][1]+" Color: "+imageArray[0][pixelPosition[7][0]][pixelPosition[7][1]]+"\n";
-		s+= "SIX: "+pixelPosition[8][0]+","+pixelPosition[8][1]+" Color: "+imageArray[0][pixelPosition[8][0]][pixelPosition[8][1]]+"\n";
-		s+= "FIVE: "+pixelPosition[9][0]+","+pixelPosition[9][1]+" Color: "+imageArray[0][pixelPosition[9][0]][pixelPosition[9][1]]+"\n";
-		s+= "FOUR: "+pixelPosition[10][0]+","+pixelPosition[10][1]+" Color: "+imageArray[0][pixelPosition[10][0]][pixelPosition[10][1]]+"\n";
-		s+= "THREE: "+pixelPosition[11][0]+","+pixelPosition[11][1]+" Color: "+imageArray[0][pixelPosition[11][0]][pixelPosition[11][1]]+"\n";
-		s+= "TWO: "+pixelPosition[12][0]+","+pixelPosition[12][1]+" Color: "+imageArray[0][pixelPosition[12][0]][pixelPosition[12][1]]+"\n";
+		s+= "KING: "+pixelPosition[1][0]+","+pixelPosition[1][1]+" Color: "+imageArray[1][pixelPosition[1][0]][pixelPosition[1][1]]+"\n";
+		s+= "QUEEN: "+pixelPosition[2][0]+","+pixelPosition[2][1]+" Color: "+imageArray[2][pixelPosition[2][0]][pixelPosition[2][1]]+"\n";
+		s+= "JACK: "+pixelPosition[3][0]+","+pixelPosition[3][1]+" Color: "+imageArray[3][pixelPosition[3][0]][pixelPosition[3][1]]+"\n";
+		s+= "TEN: "+pixelPosition[4][0]+","+pixelPosition[4][1]+" Color: "+imageArray[4][pixelPosition[4][0]][pixelPosition[4][1]]+"\n";
+		s+= "NINE: "+pixelPosition[5][0]+","+pixelPosition[5][1]+" Color: "+imageArray[5][pixelPosition[5][0]][pixelPosition[5][1]]+"\n";
+		s+= "EIGHT: "+pixelPosition[6][0]+","+pixelPosition[6][1]+" Color: "+imageArray[6][pixelPosition[6][0]][pixelPosition[6][1]]+"\n";
+		s+= "SEVEN: "+pixelPosition[7][0]+","+pixelPosition[7][1]+" Color: "+imageArray[7][pixelPosition[7][0]][pixelPosition[7][1]]+"\n";
+		s+= "SIX: "+pixelPosition[8][0]+","+pixelPosition[8][1]+" Color: "+imageArray[8][pixelPosition[8][0]][pixelPosition[8][1]]+"\n";
+		s+= "FIVE: "+pixelPosition[9][0]+","+pixelPosition[9][1]+" Color: "+imageArray[9][pixelPosition[9][0]][pixelPosition[9][1]]+"\n";
+		s+= "FOUR: "+pixelPosition[10][0]+","+pixelPosition[10][1]+" Color: "+imageArray[10][pixelPosition[10][0]][pixelPosition[10][1]]+"\n";
+		s+= "THREE: "+pixelPosition[11][0]+","+pixelPosition[11][1]+" Color: "+imageArray[11][pixelPosition[11][0]][pixelPosition[11][1]]+"\n";
+		s+= "TWO: "+pixelPosition[12][0]+","+pixelPosition[12][1]+" Color: "+imageArray[12][pixelPosition[12][0]][pixelPosition[12][1]]+"\n";
 		return s;
 	}
 	
