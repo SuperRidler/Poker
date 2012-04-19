@@ -80,7 +80,7 @@ public class HadesStrategy extends Strategy {
 	private boolean handIsGrouped(){
 		//returns false if hand is not in any groups.
 		
-		if(handInGroupA() ||
+		/*if(handInGroupA() ||
 		   handInGroupB() ||
 		   handInGroupC() ||
 		   handInGroupD() ||
@@ -88,7 +88,10 @@ public class HadesStrategy extends Strategy {
 			return true;
 		} else {
 			return false;
-		}
+		}*/
+		
+		return handInGroupA() || handInGroupB() || handInGroupC() || handInGroupD() || handInGroupE();
+		
 	}
 	
 	private boolean handInGroupA(){

@@ -224,6 +224,7 @@ public class SiteEmulator {
 		return returnArray;
 	}
 	
+	//This code is wrong.
 	private int cardToInt(String str){
 		char c1 = str.charAt(0);
 		char c2 = str.charAt(1);
@@ -254,6 +255,7 @@ public class SiteEmulator {
 		return card;
 	}
 	
+	//This code is wrong.
 	private String intToCard(int num){
 		int faceNum = 0;
 		while(num > 4){
