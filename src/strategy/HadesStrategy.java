@@ -196,7 +196,7 @@ public class HadesStrategy extends Strategy {
 	private String intToCard(int intToChange) {
 		//just uses siteEmulators intocard. 
 		//seperate for ease of use and intocard might move later.
-		return util.SiteEmulator.intToCard(intToChange);
+		return util.CardConversion.intToCard(intToChange);
 	}
 
 	private boolean handIsGrouped(){
