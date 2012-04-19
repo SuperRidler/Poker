@@ -4,17 +4,17 @@ import util.Info;
 
 public class HadesStrategy extends Strategy {
 
-	int[] cardsOnTable;
+	public int[] cardsOnTable;
 	
-	int playerPosition;//0-8
-	int dealerPosition;//0-8
+	public int playerPosition;//0-8
+	public int dealerPosition;//0-8
 	
-	int turn;
+	public int turn;
 	
-	int playerCardOne;
-	int playerCardTwo;
+	public int playerCardOne;
+	public int playerCardTwo;
 	
-	int numberOfPlayers;//1-9
+	public int numberOfPlayers;//1-9
 	
 	//String playerName = "BobbyDrop";
 	
@@ -40,14 +40,17 @@ public class HadesStrategy extends Strategy {
 	private void cheatSheetStartStrategy(){
 		if(!handIsGrouped()){
 			//fold
+			playerAction(1);
 		} else {
 			if(someoneHasBet()){
 				//if you are not the blinds
 				if(!playerIsBlinds()){
 					if(handInGroupA() || handInGroupB()){
-						//re raise
+						//raise
+						playerAction(3);
 					} else {
 						//fold
+						playerAction(1);
 					}
 				} else {
 					//need to add the bit for if you are the blinds
@@ -55,21 +58,31 @@ public class HadesStrategy extends Strategy {
 			}
 			if(getPositionStrength() == 3){
 				//raise
+				playerAction(3);
 			} else if (getPositionStrength() == 2){
 				if(handInGroupA() ||
 				   handInGroupB() ||
 				   handInGroupC() ||
 				   handInGroupD()){
 					//raise
+					playerAction(3);
+				} else {
+					//fold
+					playerAction(1);
 				}
 			} else if (getPositionStrength() == 1){
 				if(handInGroupA() ||
 				   handInGroupB() ||
 				   handInGroupC()){
 					//raise
+					playerAction(3);
+				} else {
+					//fold
+					playerAction(1);
 				}
 			} else {
 				//panic
+				playerAction(0);
 			}
 		}
 	}
@@ -80,10 +93,8 @@ public class HadesStrategy extends Strategy {
 		return false;
 	}
 
-	//i should consider rewriting this ugly ass function. Use a new array where 0 is always dealer.
 	//the logic on position seems dodgey (not the code, but the strategy logic) with less than 9 players. kind of worrying.
 	private int getPositionStrength(){
-		//this function needs finishing, it is fairly simple but needs more information to calculate its result.
 		//dealer is always latest and strongest position.
 		//blinds are weird.
 		//they are considered the weakest and worst position, but before the flop the big blind acts last
@@ -99,38 +110,33 @@ public class HadesStrategy extends Strategy {
 		//THIS ONLY WORKS FOR MORE THAN 5 PLAYERS CURRENTLY.
 		//NOT GOOD
 		if(numberOfPlayers > 5){
+			
+			trace("number of players > 5");
+			
 			//late
-			if(dealerPosition == playerPosition){
+			boolean atDealerPos = dealerPosition == playerPosition;
+			boolean oneRightOfDealer = dealerPosition != 0 && dealerPosition-1 == playerPosition;
+			boolean oneRightOfDealerAtZero = dealerPosition == 0 && numberOfPlayers-1 == playerPosition;
+			
+			if(atDealerPos || oneRightOfDealer || oneRightOfDealerAtZero){
 				strengthNumber = 3;
-			} else{
-				if(dealerPosition!=0){
-					if(dealerPosition-1 == playerPosition){
-						strengthNumber = 3;
-					}
-				} else {
-					if(numberOfPlayers-1 == playerPosition){
-						strengthNumber = 3;
-					}
-				}
 			}
 			
+			
 			//blinds
-			if(dealerPosition+1 == playerPosition){
-				strengthNumber = 0;
-			} else if(dealerPosition+2 == playerPosition){
-				strengthNumber = 0;
-			} else if(dealerPosition == numberOfPlayers){
-				if(0 == playerPosition){
+			boolean smallBlind = dealerPosition+1 == playerPosition;
+			boolean bigBlind = dealerPosition+2 == playerPosition;
+			
+			boolean smallBlindDealerAtCap = dealerPosition == numberOfPlayers && 0 == playerPosition;
+			boolean bigBlindDealerAtCap = dealerPosition == numberOfPlayers && 1 == playerPosition;
+			
+			boolean smallBlindDealerAtCapTwo = dealerPosition+1 == numberOfPlayers && numberOfPlayers == playerPosition;
+			boolean bigBlindDealerAtCapTwo = dealerPosition+1 == numberOfPlayers && 0 == playerPosition;
+			
+			if(smallBlind || bigBlind ||
+				smallBlindDealerAtCap || bigBlindDealerAtCap || 
+				smallBlindDealerAtCapTwo || bigBlindDealerAtCapTwo){
 					strengthNumber = 0;
-				} else if(1 == playerPosition){
-					strengthNumber = 0;
-				}
-			} else if(dealerPosition+1 == numberOfPlayers){
-				if(numberOfPlayers == playerPosition){
-					strengthNumber = 0;
-				} else if(0 == playerPosition){
-					strengthNumber = 0;
-				}
 			}
 			
 			//early
@@ -159,6 +165,8 @@ public class HadesStrategy extends Strategy {
 		
 		//strengthNumber either 1,2,3. early,middle,late position. Higher is better.
 		//maybe use zero for blinds
+		
+		trace("positionStr: "+strengthNumber);
 		return strengthNumber;
 	}
 	
@@ -194,8 +202,7 @@ public class HadesStrategy extends Strategy {
 	}
 	
 	private String intToCard(int intToChange) {
-		//just uses siteEmulators intocard. 
-		//seperate for ease of use and intocard might move later.
+		//just uses CardConversion intocard. 
 		return util.CardConversion.intToCard(intToChange);
 	}
 
@@ -215,75 +222,63 @@ public class HadesStrategy extends Strategy {
 	
 	private boolean handInGroupA(){
 		//should return true if hand is in group A.
-		if(
+		return
 			playerHandMatches('A','A',false) ||
 			playerHandMatches('K','K',false) ||
-			playerHandMatches('A','K',true)
-		){
-			return true;
-		} else {
-			return false;
-		}
+			playerHandMatches('A','K',true);
 	}
 	
 	private boolean handInGroupB(){
 		//should return true if hand is in group B.
-		if(
+		return
 			playerHandMatches('Q','Q',false) ||
 			playerHandMatches('A','K',false) ||
 			playerHandMatches('J','J',false) ||
-			playerHandMatches('T','T',false)
-		){
-			return true;
-		} else {
-			return false;
-		}
+			playerHandMatches('T','T',false);
 	}
 	
 	private boolean handInGroupC(){
 		//should return true if hand is in group C.
-		if(
+		return
 			playerHandMatches('A','Q',true) ||
 			playerHandMatches('9','9',false) ||
 			playerHandMatches('8','8',false) ||
-			playerHandMatches('A','J',true)
-		){
-			return true;
-		} else {
-			return false;
-		}
+			playerHandMatches('A','J',true);
 	}
 	
 	private boolean handInGroupD(){
 		//should return true if hand is in group D.
-		if(
+		return
 			playerHandMatches('7','7',false) ||
 			playerHandMatches('K','Q',true) ||
 			playerHandMatches('6','6',false) ||
 			playerHandMatches('A','T',true) ||
 			playerHandMatches('5','5',false) ||
-			playerHandMatches('A','J',false)
-		){
-			return true;
-		} else {
-			return false;
-		}
+			playerHandMatches('A','J',false);
 	}
 	
 	private boolean handInGroupE(){
 		//should return true if hand is in group E.
-		if(
+		return
 			playerHandMatches('K','Q',false) ||
 			playerHandMatches('4','4',false) ||
 			playerHandMatches('K','J',true) ||
 			playerHandMatches('3','3',false) ||
 			playerHandMatches('2','2',false) ||
 			playerHandMatches('A','T',false) ||
-			playerHandMatches('Q','J',true)
-		){
-			return true;
-		} else {
-			return false;
+			playerHandMatches('Q','J',true);
+		
+	}
+	
+	private static void playerAction(int actionNum){
+		if(actionNum == 0){
+			trace("PANIC!");
+		} else if(actionNum == 1){
+			trace("Fold");
+		} else if (actionNum ==2){
+			trace("Call");
+		} else if (actionNum ==3){
+			trace("Raise");
 		}
 	}
 	
