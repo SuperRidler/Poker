@@ -81,7 +81,7 @@ public class UniquePixel {
 		s+= "R FIVE: "+pixelPosition[0][9][0]+","+pixelPosition[0][9][1]+" Color: "+imageArray[0][9][pixelPosition[0][9][0]][pixelPosition[0][9][1]]+"\n";
 		s+= "R FOUR: "+pixelPosition[0][10][0]+","+pixelPosition[0][10][1]+" Color: "+imageArray[0][10][pixelPosition[0][10][0]][pixelPosition[0][10][1]]+"\n";
 		s+= "R THREE: "+pixelPosition[0][11][0]+","+pixelPosition[0][11][1]+" Color: "+imageArray[0][11][pixelPosition[0][11][0]][pixelPosition[0][11][1]]+"\n";
-		s+= "R TWO: "+pixelPosition[0][12][0]+","+pixelPosition[0][12][1]+" Color: "+imageArray[0][12][pixelPosition[0][12][0]][pixelPosition[0][12][1]]+"\n";
+		s+= "R TWO: "+pixelPosition[0][12][0]+","+pixelPosition[0][12][1]+" Color: "+imageArray[0][12][pixelPosition[0][12][0]][pixelPosition[0][12][1]]+"\n\n";
 		s+= "B ACE: "+pixelPosition[1][0][0]+","+pixelPosition[1][0][1]+" Color: "+imageArray[1][0][pixelPosition[1][0][0]][pixelPosition[1][0][1]]+"\n";
 		s+= "B KING: "+pixelPosition[1][1][0]+","+pixelPosition[1][1][1]+" Color: "+imageArray[1][1][pixelPosition[1][1][0]][pixelPosition[1][1][1]]+"\n";
 		s+= "B QUEEN: "+pixelPosition[1][2][0]+","+pixelPosition[1][2][1]+" Color: "+imageArray[1][2][pixelPosition[1][2][0]][pixelPosition[1][2][1]]+"\n";
