@@ -1,4 +1,4 @@
-package util;
+package site.zynga;
 
 import java.awt.AWTException;
 import java.awt.Point;
