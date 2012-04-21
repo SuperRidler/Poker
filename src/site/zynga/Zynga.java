@@ -18,8 +18,9 @@ public class Zynga {
 	private static final String IMAGE_PATH = "Numbers/";
 	private static final String DEALERCHAT = "DealerChat.png";
 	
-	private static final String TABLE_CARDS_PATH = "src/site/zynga/ZyngaTableCards.txt";
+	private static final String TABLE_RANK_CARDS_PATH = "src/site/zynga/ZyngaTableCardsRank.txt";
 	UniquePixelIn upi;
+	private static final String TABLE_SUIT_CARDS_PATH = "src/site/zynga/ZyngaTableCardsSuit.txt";
 	
 	private int[][] imageArray;
 	private Robot r;
@@ -56,12 +57,11 @@ public class Zynga {
 	
 	private void loop(){
 		while(true){
-			System.out.println("Loop");
 			currentImage = getImage();
 			Point p = getLocation(currentImage, imageArray);
 			if(p.x !=0 && p.y !=0){
 				for(int i=0; i<5; i++){
-					System.out.print(getCard2(new Point(p.x+(i*40), p.y)));
+					System.out.print(getCardRank(new Point(p.x+(i*40), p.y)));
 				}
 				System.out.println();
 			}
@@ -187,7 +187,7 @@ public class Zynga {
 		return 'X';
 	}
 	
-	private char getCard2(Point p){
+	private char getCardRank(Point p){
 		p.x += (725-450);
 		p.y += (508-722);
 		int[][] cardRank = new int[20][20];
@@ -197,6 +197,10 @@ public class Zynga {
 			}
 		}
 		return upi.thisIs(cardRank);
+	}
+	
+	private char getCardSuit(Point p){
+		
 	}
 	
 	private int getCardAux(int x, int y){
