@@ -11,10 +11,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import util.UniquePixelIn;
+
 public class Zynga {
 
 	private static final String IMAGE_PATH = "Numbers/";
 	private static final String DEALERCHAT = "DealerChat.png";
+	
+	private static final String TABLE_CARDS_PATH = "src/site/zynga/ZyngaTableCards.txt";
+	UniquePixelIn upi;
 	
 	private int[][] imageArray;
 	private Robot r;
@@ -33,6 +38,8 @@ public class Zynga {
 	
 	public Zynga(){
 		
+		upi = new UniquePixelIn(TABLE_CARDS_PATH);
+		
 		screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 		screenRec = new Rectangle(screenWidth, screenHeight);
@@ -49,6 +56,7 @@ public class Zynga {
 	
 	private void loop(){
 		while(true){
+			System.out.println("Loop");
 			currentImage = getImage();
 			Point p = getLocation(currentImage, imageArray);
 			if(p.x !=0 && p.y !=0){
@@ -78,6 +86,9 @@ public class Zynga {
 	private boolean isMatch(BufferedImage bi, int[][] sel, int x, int y){
 		for(int i=0; i<sel.length; i++){
 			for(int j=0; j<sel[0].length; j++){
+				if(bi.getWidth() <= i+x || bi.getHeight() <= j+y){
+					return false;
+				}
 				if(sel[i][j] != bi.getRGB(i+x, j+y)){
 					return false;
 				}
@@ -174,6 +185,16 @@ public class Zynga {
 			return '2';
 		}
 		return 'X';
+	}
+	
+	private char getCard2(Point p){
+		int[][] cardRank = new int[20][20];
+		for(int x=0; x<20; x++){
+			for(int y=0; y<20; y++){
+				cardRank[x][y] = currentImage.getRGB(p.x+x, p.y+y);
+			}
+		}
+		return upi.thisIs(cardRank);
 	}
 	
 	private int getCardAux(int x, int y){
