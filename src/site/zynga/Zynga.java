@@ -191,7 +191,7 @@ public class Zynga {
 		int[][] cardRank = new int[20][20];
 		for(int x=0; x<20; x++){
 			for(int y=0; y<20; y++){
-				cardRank[x][y] = currentImage.getRGB(p.x+x, p.y+y);
+				cardRank[x][y] = currentImage.getRGB(p.x+x+1, p.y+y+1);
 			}
 		}
 		return upi.thisIs(cardRank);
