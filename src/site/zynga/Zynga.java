@@ -21,6 +21,7 @@ public class Zynga {
 	private static final String TABLE_RANK_CARDS_PATH = "src/site/zynga/ZyngaTableCardsRank.txt";
 	UniquePixelIn upi;
 	private static final String TABLE_SUIT_CARDS_PATH = "src/site/zynga/ZyngaTableCardsSuit.txt";
+	UniquePixelIn suitDetector;
 	
 	private int[][] imageArray;
 	private Robot r;
@@ -39,7 +40,8 @@ public class Zynga {
 	
 	public Zynga(){
 		
-		upi = new UniquePixelIn(TABLE_CARDS_PATH);
+		upi = new UniquePixelIn(TABLE_RANK_CARDS_PATH);
+		suitDetector = new UniquePixelIn(TABLE_SUIT_CARDS_PATH);
 		
 		screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -62,6 +64,10 @@ public class Zynga {
 			if(p.x !=0 && p.y !=0){
 				for(int i=0; i<5; i++){
 					System.out.print(getCardRank(new Point(p.x+(i*40), p.y)));
+					System.out.print(getCardSuit(new Point(p.x+(i*40), p.y)));
+					if(i != 4){
+						System.out.println(",");
+					}
 				}
 				System.out.println();
 			}
@@ -200,7 +206,15 @@ public class Zynga {
 	}
 	
 	private char getCardSuit(Point p){
-		
+		p.x += (725-450);
+		p.y += (508-722+19);
+		int[][] cardRank = new int[20][20];
+		for(int x=0; x<20; x++){
+			for(int y=0; y<20; y++){
+				cardRank[x][y] = currentImage.getRGB(p.x+x, p.y+y);
+			}
+		}
+		return suitDetector.thisIs(cardRank);
 	}
 	
 	private int getCardAux(int x, int y){
