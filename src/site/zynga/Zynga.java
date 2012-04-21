@@ -61,7 +61,7 @@ public class Zynga {
 			Point p = getLocation(currentImage, imageArray);
 			if(p.x !=0 && p.y !=0){
 				for(int i=0; i<5; i++){
-					System.out.print(getCard(new Point(p.x+(i*40), p.y)));
+					System.out.print(getCard2(new Point(p.x+(i*40), p.y)));
 				}
 				System.out.println();
 			}
@@ -188,10 +188,12 @@ public class Zynga {
 	}
 	
 	private char getCard2(Point p){
+		p.x += (725-450);
+		p.y += (508-722);
 		int[][] cardRank = new int[20][20];
 		for(int x=0; x<20; x++){
 			for(int y=0; y<20; y++){
-				cardRank[x][y] = currentImage.getRGB(p.x+x+1, p.y+y+1);
+				cardRank[x][y] = currentImage.getRGB(p.x+x, p.y+y);
 			}
 		}
 		return upi.thisIs(cardRank);
