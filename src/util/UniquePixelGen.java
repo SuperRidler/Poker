@@ -31,7 +31,10 @@ public class UniquePixelGen {
 			BufferedWriter bout = new BufferedWriter(fstream);
 			
 			for(int i=0; i<code.length; i++){
-				bout.write(code[i]+":"+pixelPosition[i][0]+":"+pixelPosition[i][1]+":Colour:"+imageArray[pixelPosition[i][0]][pixelPosition[i][1]]);
+				bout.write(code[i]+":"
+				+pixelPosition[i][0]+":"
+				+pixelPosition[i][1]+":Colour:"
+				+imageArray[pixelPosition[i][0]][pixelPosition[i][1]]);
 			}
 			
 			bout.close();
