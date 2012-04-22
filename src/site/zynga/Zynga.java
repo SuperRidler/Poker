@@ -17,13 +17,15 @@ public class Zynga {
 
 	private static final String IMAGE_PATH = "Numbers/";
 	private static final String DEALERCHAT = "DealerChat.png";
+	private static final String DOLLARSIGN = "DollarSign.png";
 	
 	private static final String TABLE_RANK_CARDS_PATH = "src/site/zynga/ZyngaTableCardsRank.txt";
 	UniquePixelIn upi;
 	private static final String TABLE_SUIT_CARDS_PATH = "src/site/zynga/ZyngaTableCardsSuit.txt";
 	UniquePixelIn suitDetector;
 	
-	private int[][] imageArray;
+	private int[][] dealerChatArray;
+	private int[][] dollarSignArray;
 	private Robot r;
 	
 	private int screenWidth, screenHeight;
@@ -52,7 +54,9 @@ public class Zynga {
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
-		imageArray = getSel(DEALERCHAT);
+		
+		dealerChatArray = getSel(DEALERCHAT);
+		dollarSignArray = getSel(DOLLARSIGN);
 		
 		loop();
 	}
@@ -60,16 +64,21 @@ public class Zynga {
 	private void loop(){
 		while(true){
 			currentImage = getImage();
-			Point p = getLocation(currentImage, imageArray);
+			//Look for dealer chat box.
+			Point p = getLocation(currentImage, dealerChatArray);
 			if(p.x !=0 && p.y !=0){
+				String s = "";
 				for(int i=0; i<5; i++){
-					System.out.print(getCardRank(new Point(p.x+(i*40), p.y)));
-					System.out.print(getCardSuit(new Point(p.x+(i*40), p.y)));
+					s += getCardRank(new Point(p.x+(i*40), p.y));
+					s += getCardSuit(new Point(p.x+(i*40), p.y));
 					if(i != 4){
-						System.out.print(",");
+						s += ",";
 					}
 				}
-				System.out.println();
+				if(s.charAt(0) != 'X'){
+					//There's at least the flop on the table.
+					System.out.println("On table: "+s);
+				}
 			}
 		}
 	}
