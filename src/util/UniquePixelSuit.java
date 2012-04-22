@@ -92,11 +92,14 @@ public class UniquePixelSuit {
 					if(found){
 						pixelPosition[i][0] = j;
 						pixelPosition[i][1] = k;
-						for(int p=0; p<i; p++){
+						if(j < 5 || k < 5){
+							found = false;
+						}
+						/*for(int p=0; p<i; p++){
 							if(pixelPosition[p][0] == j && pixelPosition[p][1] == k || j < 2 || k < 2){
 								found = false;
 							}
-						}
+						}*/
 					}
 				}
 			}

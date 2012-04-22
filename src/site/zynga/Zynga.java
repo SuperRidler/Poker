@@ -66,7 +66,7 @@ public class Zynga {
 					System.out.print(getCardRank(new Point(p.x+(i*40), p.y)));
 					System.out.print(getCardSuit(new Point(p.x+(i*40), p.y)));
 					if(i != 4){
-						System.out.println(",");
+						System.out.print(",");
 					}
 				}
 				System.out.println();
@@ -207,10 +207,10 @@ public class Zynga {
 	
 	private char getCardSuit(Point p){
 		p.x += (725-450);
-		p.y += (508-722+19);
-		int[][] cardRank = new int[20][20];
-		for(int x=0; x<20; x++){
-			for(int y=0; y<20; y++){
+		p.y += (508-722+17);
+		int[][] cardRank = new int[31][31];
+		for(int x=0; x<31; x++){
+			for(int y=0; y<31; y++){
 				cardRank[x][y] = currentImage.getRGB(p.x+x, p.y+y);
 			}
 		}
